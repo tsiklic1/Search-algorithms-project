@@ -10,7 +10,9 @@ class Tree:
     def __init__(self, edgesList, root=0):
         self.root = root
 
-        self.nodes = [TreeNode(i) for i in range(12)]
+        highestOrderNode = max([max(edge[:2]) for edge in edgesList])
+
+        self.nodes = [TreeNode(i) for i in range(highestOrderNode + 1)]
 
         edges = edgesList
 
