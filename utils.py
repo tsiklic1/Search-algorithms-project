@@ -13,3 +13,18 @@ def GetEdges(fileName="./labirinti/Trees/tree1.txt"):
     ]
 
     return edgesList
+
+
+def GetTerminals(fileName="./labirinti/Trees/tree1.txt"):
+    file = open(fileName, "r")
+    lines = file.readlines()
+    file.close()
+
+    indexOfTerminals = lines.index("TERMINALS:\n")
+
+    terminalsTxtList = lines[indexOfTerminals + 1]
+    terminalsList = [
+        int(terminalTxt.strip()) for terminalTxt in terminalsTxtList.split()
+    ]
+
+    return terminalsList

@@ -3,16 +3,16 @@ class TreeNode:
         self.value = value
         self.children = []  # List of tuples (node, distance)
         self.parent = None
-        self.pathLength = 0
+        self.path_length = 0
 
 
 class Tree:
     def __init__(self, edgesList, root=0):
         self.root = root
 
-        highestOrderNode = max([max(edge[:2]) for edge in edgesList])
+        highest_order_node = max([max(edge[:2]) for edge in edgesList])
 
-        self.nodes = [TreeNode(i) for i in range(highestOrderNode + 1)]
+        self.nodes = [TreeNode(i) for i in range(highest_order_node + 1)]
 
         edges = edgesList
 
@@ -28,24 +28,24 @@ class Tree:
 
     def GetPath(self, targetNode):
         path = []
-        currentNode = targetNode
-        while currentNode is not None:
-            path.insert(0, currentNode.value)
-            currentNode = currentNode.parent
+        current_node = targetNode
+        while current_node is not None:
+            path.insert(0, current_node.value)
+            current_node = current_node.parent
 
         return path
 
     def GetPathLength(self, targetNode):
-        pathLength = 0
-        currentNode = targetNode
-        while currentNode is not None:
-            parentNode = currentNode.parent
-            if parentNode is not None:
-                for child, distance in parentNode.children:
-                    if child == currentNode:
-                        pathLength += distance
+        path_length = 0
+        current_node = targetNode
+        while current_node is not None:
+            parent_node = current_node.parent
+            if parent_node is not None:
+                for child, distance in parent_node.children:
+                    if child == current_node:
+                        path_length += distance
                         break
 
-            currentNode = parentNode
+            current_node = parent_node
 
-        return pathLength
+        return path_length
