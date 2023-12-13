@@ -12,9 +12,12 @@ def simulated_annealing(tree, start_node, goal_node, initial_temperature, coolin
     current_node = start_node
     current_solution = [current_node]
 
+    number_of_iterations = 0
+
     temperature = initial_temperature
 
     while current_node.value != goal_node and temperature > 0.1:
+        number_of_iterations += 1
         neighbors = get_neighbors(current_node)
         if not neighbors:
             current_node = tree.GetRoot()
@@ -37,6 +40,7 @@ def simulated_annealing(tree, start_node, goal_node, initial_temperature, coolin
         print("Solution not found")
 
     print("Solution:", [node.value for node in current_solution])
+    print("Number of iterations:", number_of_iterations)
 
     return current_solution
 
@@ -48,11 +52,12 @@ tree = Tree.Tree(edges_list)
 
 goal_node = 11
 
-initial_temperature = 100.0
-cooling_rate = 0.99
+initial_temperature = 50
+cooling_rate = 0.9
 
 start_node = tree.GetRoot()
 
 simulated_annealing(tree, start_node, goal_node, initial_temperature, cooling_rate)
 
 # it is possible that this method doesn't find a solution
+# if the temperature gets below limit temperature and the solution is not found
